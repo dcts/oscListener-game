@@ -14,9 +14,9 @@ float[] y  = new float[num];
 float[] ax = new float[num];
 float[] ay = new float[num];
 // swarm parameters
-float magnetism = 40.0;
-float radius    = 6;
-float gensoku   = 0.95;
+float radius = 6;
+float magnetism;
+float gensoku;
 // player position
 float posX = 0.5;  // between 0 and 1
 float posY = 0.5;  // between 0 and 1
@@ -24,7 +24,8 @@ float posY = 0.5;  // between 0 and 1
 OscP5 oscP5;
 
 void setup() {
-  size(800, 800);
+  //size(800, 800);
+  fullScreen();
   noStroke(); 
   fill(0);
   background(0);
@@ -61,6 +62,9 @@ void oscEvent(OscMessage oscMsg) {
   }  
   if (oscMsg.addrPattern().equals("/fire")) { // controlls fire -> RESTART SCETCH
      init();
+  } 
+  if (oscMsg.addrPattern().equals("/fire2")) { // controlls fire2 -> change draw style 
+    blendMode(ADD);
   }
   
 }
@@ -109,6 +113,9 @@ void drawParticles() {
 }
 
 void init () {
+  magnetism = 40.0;
+  gensoku   = 0.95;
+
   noStroke(); 
   fill(0);
   background(0);
