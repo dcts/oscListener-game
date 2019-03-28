@@ -99,6 +99,17 @@ class Player {
   
   
   //------------------------------------------------------------------------------------------------------------------------------------------
+  //check if player is hit by a bullet
+  void checkIfBulletHit(Player enemyPlayer) {
+    for (Bullet b: this.bullets) {
+      if (dist(enemyPlayer.pos.x, enemyPlayer.pos.y, b.pos.x, b.pos.y)< 20) {
+        score++;
+        b.eraseBullet();
+      }
+    }
+  }
+  
+  //------------------------------------------------------------------------------------------------------------------------------------------
   //draw the player and, bullets 
   void show() {
     for (int i = 0; i < bullets.size(); i++) { //show bullets
